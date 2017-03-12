@@ -1,9 +1,9 @@
 function Ball(p, d) {
 	//this.img = loadImage('assets/download.png');
-	this.pos = createVector(30, 150);
-	this.speed = createVector(0, 40);
-	this.smult = 0.2;
-	this.r = 20;
+	this.pos = createVector(windowWidth/2, windowHeight/2);
+	this.speed = createVector(0, windowHeight/100);
+	this.smult = 0.25;
+	this.r = windowWidth/25;
 	this.pop = p;
 	this.ding = d;
 	this.play = true;
@@ -44,19 +44,22 @@ function Ball(p, d) {
 		if (this.pos.y <= 0) {
 			this.speed.y *= -1;
 			pa1.score++;
-			this.pos.y = pa1.pos.y - 41;
-			pa1.center.x = pa1.pos.x + 25;
+			this.pos.y = pa1.pos.y - this.r*2.2;
+			pa1.updateCenter();
 			this.pos.x = pa1.center.x;
-			this.speed.y = -4;
+			this.speed.y = -windowHeight/50;
+			this.speed.x = 0;
 			//this.ding.setVolume(0.1);
 			//this.ding.play();
 		}
 		if (this.pos.y > height) {
 			score = 0;
-			this.pos.y = pa2.pos.y + 41;
-			pa2.center.x = pa2.pos.x + 25;
+			this.pos.y = pa2.pos.y + this.r*2.2;
+			pa2.updateCenter();
 			this.pos.x = pa2.center.x;
 			pa2.score++;
+			this.speed.x = 0;
+			this.speed.y = windowHeight/50;
 			//this.ding.setVolume(0.1);
 			//this.ding.play();
 		}

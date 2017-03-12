@@ -1,22 +1,22 @@
 //TODO updatecenter function, better ai, aceleration at first when moving
 
 function Paddle(p) {
-	this.long = 50;
-	this.tall = 25;
+	this.long = windowWidth / 7;
+	this.tall = windowHeight / 20;
 	this.player = p;
 	this.pos = createVector();
 	this.center = createVector();
-	this.speed = createVector(5.5, 0);
+	this.speed = createVector(windowWidth / 95, 0);
 	this.score = 0;
 	if (this.player) {
 		this.pos.y = height - this.tall;
 	} else {
 		this.pos.y = 0;
 	}
-	this.pos.x = 0;
+	this.pos.x = windowWidth / 2;
 
 	this.display = function () {
-		
+
 		if (this.player) {
 			fill(0, 0, 255)
 			rect(this.pos.x, this.pos.y, this.long, this.tall, 40, 40, 0, 0);
@@ -32,6 +32,13 @@ function Paddle(p) {
 
 		if (keyIsDown(68) && this.pos.x < width - this.long)
 			this.pos.x += this.speed.x;
+		if (mouseIsPressed) {
+			if (mouseX < windowWidth / 2 && this.pos.x > 0)
+				this.pos.x -= this.speed.x;
+
+			if (mouseX > windowWidth / 2 && this.pos.x < width - this.long)
+				this.pos.x += this.speed.x;
+		}
 	}
 
 	this.move = function (target) {
@@ -45,11 +52,11 @@ function Paddle(p) {
 	}
 
 	this.updateCenter = function () {
-		this.center.x = this.pos.x + 25;
+		this.center.x = this.pos.x + this.long / 2;
 		if (this.player) {
-			this.center.y = this.pos.y + 12;
+			this.center.y = this.pos.y + this.tall / 2;
 		} else {
-			this.center.y = this.pos.y - 12;
+			this.center.y = this.pos.y - this.tall / 2;
 		}
 
 	}
