@@ -1,19 +1,19 @@
 //TODO updatecenter function, better ai, aceleration at first when moving
 
 function Paddle(p) {
-	this.long = windowWidth / 7;
-	this.tall = windowHeight / 20;
+	this.long = width / 6;
+	this.tall = height / 20;
 	this.player = p;
 	this.pos = createVector();
 	this.center = createVector();
-	this.speed = createVector(windowWidth / 95, 0);
+	this.speed = createVector(width / 80, 0);
 	this.score = 0;
 	if (this.player) {
 		this.pos.y = height - this.tall;
 	} else {
 		this.pos.y = 0;
 	}
-	this.pos.x = windowWidth / 2;
+	this.pos.x = width / 2;
 
 	this.display = function () {
 

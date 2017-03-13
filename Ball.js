@@ -1,9 +1,9 @@
 function Ball(p, d) {
 	//this.img = loadImage('assets/download.png');
-	this.pos = createVector(windowWidth/2, windowHeight/2);
-	this.speed = createVector(0, windowHeight/100);
+	this.pos = createVector(width/2, height/2);
+	this.speed = createVector(0, height/100);
 	this.smult = 0.25;
-	this.r = windowWidth/25;
+	this.r = width/25;
 	this.pop = p;
 	this.ding = d;
 	this.play = true;
@@ -77,7 +77,12 @@ function Ball(p, d) {
 				this.pop.play();
 				this.play = false;
 			}
-			console.log(this.pop.currentTime());
+			if(sape.player){
+				this.pos.y -= height/100;
+			}else{
+				this.pos.y += height/100;
+			}
+			
 		}
 	}
 }

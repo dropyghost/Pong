@@ -10,8 +10,8 @@ function preload(){
 	di = loadSound("assets/ding.mp3");
 }
 function setup() {
-	createCanvas(windowWidth, windowHeight);
-	canvas.parent('p5Container');
+	//createCanvas(windowWidth, windowHeight);
+	createCanvas(720, 1280);
 	bell = new Ball(popo, di);
 	tru = true;
 	fal = false;
