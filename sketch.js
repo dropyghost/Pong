@@ -11,6 +11,7 @@ function preload(){
 }
 function setup() {
 	createCanvas(windowWidth, windowHeight);
+	canvas.parent('p5Container');
 	bell = new Ball(popo, di);
 	tru = true;
 	fal = false;
