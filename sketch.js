@@ -1,3 +1,5 @@
+// TODO add slider with paddle  speed
+// TODO neural network ai
 var bell;
 var p1;
 var p2;
@@ -5,13 +7,15 @@ var tru;
 var fal;
 var popos;
 var di;
-function preload(){
+
+function preload() {
 	popo = loadSound("assets/pop.mp3");
 	di = loadSound("assets/ding.mp3");
 }
+
 function setup() {
 	//createCanvas(windowWidth, windowHeight);
-	createCanvas(720, 1280);
+	createCanvas(1000, 1500);
 	bell = new Ball(popo, di);
 	tru = true;
 	fal = false;
@@ -33,6 +37,9 @@ function draw() {
 	bell.hit(p2);
 	bell.display();
 	scores();
+	textSize(20);
+	text(floor(frameRate()), 0, 40);
+	fill(255);
 }
 
 function dotline() {

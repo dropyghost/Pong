@@ -13,7 +13,7 @@ function Paddle(p) {
 	} else {
 		this.pos.y = 0;
 	}
-	this.pos.x = width / 2;
+	this.pos.x = width / 2 - this.long/2;
 
 	this.display = function () {
 
@@ -43,10 +43,10 @@ function Paddle(p) {
 
 	this.move = function (target) {
 		if (target.pos.x > this.pos.x + this.long / 2 && this.pos.x < width - this.long) {
-			this.pos.x += this.speed.x;
+			this.pos.x += this.speed.x * 1.2;
 		}
 		if (target.pos.x < this.pos.x + this.long / 2 && this.pos.x > 0) {
-			this.pos.x -= this.speed.x;
+			this.pos.x -= this.speed.x * 1.2;
 		}
 
 	}
@@ -54,9 +54,9 @@ function Paddle(p) {
 	this.updateCenter = function () {
 		this.center.x = this.pos.x + this.long / 2;
 		if (this.player) {
-			this.center.y = this.pos.y + this.tall / 2;
+			this.center.y = this.pos.y + this.tall ;
 		} else {
-			this.center.y = this.pos.y - this.tall / 2;
+			this.center.y = this.pos.y  ;
 		}
 
 	}
