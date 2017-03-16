@@ -8,16 +8,20 @@ function Ball(p, d) {
 	this.ding = d;
 	this.play = true;
 
-
+	//draws ball
 	this.display = function () {
 		fill(255);
 		ellipse(this.pos.x, this.pos.y, this.r * 2);
 		//image(this.img,this.x,this.y,this.r*2,this.r*2)
 	}
-
+	
+	
+	//updates location of the ball and allows sound to play in next frame
 	this.update = function (sape, sape1) {
 		this.pos.x += this.speed.x;
 		this.pos.y += this.speed.y;
+		
+		//allows sound in next frame
 		if (collideRectCircle(sape.pos.x, sape.pos.y, sape.long, sape.tall, this.pos.x + this.speed.x, this.pos.y + this.speed.y, this.r * 2, this.r * 2)) {
 			this.play = true;
 		}
@@ -28,7 +32,10 @@ function Ball(p, d) {
 		//this.pos.y = mouseY;
 	}
 
+	
+	//test if it hits the edges and if a player scored
 	this.edges = function (pa1, pa2) {
+		//edges
 		if (this.pos.x >= width) {
 			this.speed.x *= -1;
 			this.pos.x = width - 1;
@@ -41,6 +48,8 @@ function Ball(p, d) {
 			this.pop.setVolume(0.8);
 			this.pop.play();
 		}
+		
+		//score and resets ball position
 		if (this.pos.y <= 0) {
 			this.speed.y *= -1;
 			pa1.score++;
@@ -65,21 +74,26 @@ function Ball(p, d) {
 		}
 	}
 
+	
+	//test if the ball hit a player and calculates new ball speed
 	this.hit = function (sape) {
 		if (collideRectCircle(sape.pos.x, sape.pos.y, sape.long, sape.tall, this.pos.x, this.pos.y, this.r * 2, this.r * 2)) {
-			this.speed.y *= -1;
+			//calculates new speed 
 			sape.updateCenter();
 			this.speed.x += (sape.center.x - this.pos.x) * -1;
 			this.speed.y = (sape.center.y - this.pos.y) * -1;
 			this.speed.mult(this.smult)
+			//plays sound
 			if (this.play) {
 				this.pop.setVolume(0.8);
 				this.pop.play();
 				this.play = false;
 			}
+			//separates ball and player preventing multiple hits
 			if(sape.player){
 				this.pos.y -= height/100;
 			}else{
+				sape.updateHitside();
 				this.pos.y += height/100;
 			}
 			
