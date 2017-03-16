@@ -1,5 +1,6 @@
 //TODO  better ai, aceleration at first when moving;
 //TODO  have a chance to predict ball path and go directly there
+//TODO  small chance to try to hit good power ups and evade bad ones
 
 function Paddle(p) {
 	this.long = width / 6;
@@ -57,18 +58,18 @@ function Paddle(p) {
 		if (target.pos.y < height / 2) {
 			//while on ai side
 			if (target.pos.x > this.pos.x + this.long / 2 + this.hitside && this.pos.x < width - this.long) {
-				this.pos.x += this.speed.x * 1.1;
+				this.pos.x += this.speed.x * 1;
 			}
 			if (target.pos.x < this.pos.x + this.long / 2 + this.hitside && this.pos.x > 0) {
-				this.pos.x -= this.speed.x * 1.1;
+				this.pos.x -= this.speed.x * 1;
 			}
 		} else {
 			//player side
 			if (width / 2 > this.pos.x + this.long / 2 && this.pos.x < width - this.long) {
-				this.pos.x += this.speed.x * 1.2;
+				this.pos.x += this.speed.x * 1;
 			}
 			if (width / 2 < this.pos.x + this.long / 2 && this.pos.x > 0) {
-				this.pos.x -= this.speed.x * 1.2;
+				this.pos.x -= this.speed.x * 1;
 			}
 		}
 
@@ -78,7 +79,6 @@ function Paddle(p) {
 	//updates the side the ai paddle hits on the ball
 	this.updateHitside = function () {
 		this.hitside = random(-this.long / 2, this.long / 2);
-		console.log(this.hitside);
 	}
 	
 	

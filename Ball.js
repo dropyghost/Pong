@@ -7,6 +7,7 @@ function Ball(p, d) {
 	this.pop = p;
 	this.ding = d;
 	this.play = true;
+	this.may = 0;
 
 	//draws ball
 	this.display = function () {
@@ -56,7 +57,7 @@ function Ball(p, d) {
 			this.pos.y = pa1.pos.y - this.r*2.2;
 			pa1.updateCenter();
 			this.pos.x = pa1.center.x;
-			this.speed.y = -windowHeight/50;
+			this.speed.y = -height/50;
 			this.speed.x = 0;
 			//this.ding.setVolume(0.1);
 			//this.ding.play();
@@ -68,7 +69,7 @@ function Ball(p, d) {
 			this.pos.x = pa2.center.x;
 			pa2.score++;
 			this.speed.x = 0;
-			this.speed.y = windowHeight/50;
+			this.speed.y = height/50;
 			//this.ding.setVolume(0.1);
 			//this.ding.play();
 		}
@@ -96,7 +97,6 @@ function Ball(p, d) {
 				sape.updateHitside();
 				this.pos.y += height/100;
 			}
-			
 		}
 	}
 }

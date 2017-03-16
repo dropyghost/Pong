@@ -5,6 +5,7 @@ var p1;
 var p2;
 var popos;
 var di;
+var pw;
 
 function preload() {
 	popo = loadSound("assets/pop.mp3");
@@ -12,10 +13,12 @@ function preload() {
 }
 function setup() {
 	//createCanvas(windowWidth, windowHeight);
+	//canvas ratio 2/3
 	createCanvas(666, 1000);
 	bell = new Ball(popo, di);
 	p1 = new Paddle(true);
 	p2 = new Paddle(false);
+	pw = new powerup();
 	p2.updateHitside();
 }
 
@@ -46,6 +49,11 @@ function draw() {
 	bell.display();
 	scores();
 	
+	//poweup
+	pw.display();
+	pw.hit(bell);
+	pw.create();
+	
 }
 function dotline() {
 	//draws dotted line on the middle of the window
@@ -54,7 +62,7 @@ function dotline() {
 	fill(255);
 	while (x < width) {
 		rect(x, height / 2, 20, 1);
-		x += 40
+		x += 40;
 	}
 }
 
@@ -69,8 +77,4 @@ function scores() {
 	text(p1.score, width / 2, height - height / 7);
 	rectMode(CORNER);
 	pop();
-}
-function mousePressed() {
-	bell.pos.x = width/2;
-  bell.speed.x = 0;
 }
